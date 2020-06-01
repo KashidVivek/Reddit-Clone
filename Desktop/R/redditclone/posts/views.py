@@ -26,8 +26,19 @@ def create(request):
 
 
 def home(request):
-	posts = Post.objects.order_by('votes_total')
+	posts = Post.objects.order_by('-votes_total')
 	return render(request,'posts/home.html',{'posts':posts})
 
 def upvote(request,pk):
-	return redirect('home')
+	if request.method == 'POST':
+		post = Post.objects.get(pk = pk)
+		post.votes_total += 1
+		post.save()
+		return redirect('home')
+
+def downvote(request,pk):
+	if request.method == 'POST':
+		post = Post.objects.get(pk = pk)
+		post.votes_total -= 1
+		post.save()
+		return redirect('home')

@@ -1,6 +1,6 @@
+{% extends 'base.html'%}
+{% block content%}
 <h1>Sign Up!</h1>
-
-
 {% if error %}
 {{error}}
 {% endif %}
@@ -19,5 +19,6 @@
 	<input type="password" name="password2">
 	<br/>
 	<br/>
-	<input type="submit" value="Sign Up"/>
+	<input class="btn btn-primary" type="submit" value="Sign Up"/>
 </form>
+{% endblock %}
